@@ -7,7 +7,6 @@ namespace FoodRestrictions.Patch
     [HarmonyPatch(typeof(PawnUtility), nameof(PawnUtility.TrySpawnHatchedOrBornPawn))]
     internal static class RimWorld_PawnUtility_TrySpawnHatchedOrBornPawn
     {
-        
         private static void Postfix(Pawn pawn,
             Thing motherOrEgg,
             IntVec3? positionOverride = null)
@@ -29,7 +28,8 @@ namespace FoodRestrictions.Patch
                     var compHatcher = egg.TryGetComp<CompHatcher>();
                     if (compHatcher?.hatcheeParent.foodRestriction != null)
                     {
-                        pawn.foodRestriction.CurrentFoodRestriction = compHatcher.hatcheeParent.foodRestriction.CurrentFoodRestriction;    
+                        pawn.foodRestriction.CurrentFoodRestriction =
+                            compHatcher.hatcheeParent.foodRestriction.CurrentFoodRestriction;
                     }
 
                     break;
